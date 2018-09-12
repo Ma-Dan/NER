@@ -207,7 +207,7 @@ def get_iterator(src_vocab_table, tgt_vocab_table, vocab_size, batch_size, buffe
 
 
 def get_predict_iterator(src_vocab_table, vocab_size, batch_size, max_len=max_sequence):
-    pred_dataset = tf.contrib.data.TextLineDataset(pred_file)
+    pred_dataset = tf.data.TextLineDataset(pred_file)
     pred_dataset = pred_dataset.map(
         lambda src: tf.string_split([src]).values)
     if max_len:
@@ -232,7 +232,8 @@ def get_predict_iterator(src_vocab_table, vocab_size, batch_size, max_len=max_se
 
     # 这里target_input在预测的时候不需要，但是不能返回None否则报错。这里则用个placeholder代替，但是仍然不会用到。
     WAHTEVER = 10
-    fake_tag = tf.placeholder(tf.int32, [None, WAHTEVER])
+    #fake_tag = tf.placeholder(tf.int32, [None, WAHTEVER])
+    fake_tag = tf.placeholder(tf.int32, [None, None])
     return BatchedInput(
         initializer=batched_iter.initializer,
         source=src_ids,

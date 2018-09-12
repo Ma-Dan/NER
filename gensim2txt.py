@@ -17,8 +17,8 @@ def bin2txt(path_to_model, output_file):
         vector = list()
         for dimension in model.wv[item]:
             vector.append(str(dimension))
-        vector_str = ",".join(vector)
-        line = item + "\t"  + vector_str
+        vector_str = " ".join(vector)
+        line = item + " "  + vector_str
         output.writelines(line + "\n")
     output.close()
 
