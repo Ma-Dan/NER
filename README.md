@@ -9,7 +9,7 @@
 如何使用？
 
     1. 建议安装tensorflow = 1.8.0
-    
+
     2. 提供训练所需的数据，具体格式在resource文件夹里有展示。但是需要自行分词。只需提供3个文件：
         source.txt target.txt 和 预训练的词向量。
 
@@ -28,13 +28,12 @@
 
     4. 修改config.py里的文件存路径，所有的配置都在这个文件里。
 
-    5. 训练：修改config.py
-        tf.app.flags.DEFINE_string("action", 'train', "train | predict")
-        $ python rnn.py
+    5. 训练
+        $ python ner.py --mode train
 
-    6. 预测：修改config.py
-        tf.app.flags.DEFINE_string("action", 'predict', "train | predict")
-        $ python rnn.py
+    6. 预测：修改args.py，设置要加载的checkpoint路径
+        parser.add_argument('--demo_model', type=str, default='1537601731', help='model for test and demo')
+        $ python ner.py --mode demo
 
 
 注意：
